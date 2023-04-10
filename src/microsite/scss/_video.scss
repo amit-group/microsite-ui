@@ -1,0 +1,16 @@
+@use "./mixins/video" as *;
+@use "./variables/video" as *;
+
+.#{$video-prefix} {
+  &-container {
+    @include make-microsite-video-container;
+  }
+
+  & {
+    @include make-microsite-video;
+  }
+
+  &-control {
+    @include make-microsite-video-controls;
+  }
+}

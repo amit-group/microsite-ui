@@ -1,0 +1,62 @@
+@use "../variables/video" as *;
+
+@mixin make-microsite-video-container {
+  position: relative;
+  display: flex;
+
+  padding: $video-container-padding;
+  margin: $video-container-margin;
+  width: $video-container-width;
+
+  background: $video-container-background;
+}
+
+@mixin make-microsite-video() {
+  width: 100%;
+}
+
+@mixin make-microsite-video-controls {
+  cursor: pointer;
+  display: none;
+  position: $video-control-position;
+  left: $video-control-left;
+  top: $video-control-top;
+  z-index: $video-control-zIndex;
+  transform: $video-control-transform;
+
+  margin: $video-control-margin;
+  border: $video-control-border;
+  border-radius: $video-control-borderRadius;
+  padding: $video-control-padding;
+  width: $video-control-width;
+  height: $video-control-height;
+
+  background: $video-control-background;
+  z-index: 1;
+
+  overflow: hidden;
+
+  &.show {
+    display: inline-block;
+  }
+
+  img {
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &-sound-on,
+  &-sound-off {
+    top: 32px;
+    right: 32px;
+    bottom: auto;
+    left: auto;
+    border-radius: 6px;
+
+    width: 55px;
+    height: 40px;
+
+    transform: none;
+  }
+}

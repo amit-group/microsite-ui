@@ -1,0 +1,23 @@
+@use "@core/scss/variables/global" as *;
+
+$video-prefix: "#{$prefix}-video" !default;
+
+
+$video-container-background: none !default;
+$video-container-width: 100% !default;
+$video-container-padding: 1rem !default;
+$video-container-margin: 0 auto !default;
+
+$video-control-position: absolute !default;
+$video-control-top: 50% !default;
+$video-control-left: 50% !default;
+$video-control-margin: 0 !default;
+$video-control-padding: 0 !default;
+$video-control-width: 100px !default;
+$video-control-height: 100px !default;
+$video-control-zIndex: 100 !default;
+$video-control-borderRadius: 50% !default;
+$video-control-border: none !default;
+$video-control-background: none !default;
+$video-control-transform: translate(-50%, -50%) !default;
+

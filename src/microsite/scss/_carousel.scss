@@ -1,0 +1,9 @@
+@use './mixins/carousel' as *;
+@use './variables/carousel' as *;
+
+@include make-pulse-animation();
+
+.#{$carousel-prefix} {
+  @include make-microsite-carousel();
+}
+

@@ -1,0 +1,10 @@
+$default-spacer: 1rem !default;
+
+$spacers: (
+  0: 0,
+  1: 0.25 * $default-spacer,
+  2: 0.5 * $default-spacer,
+  3: $default-spacer,
+  4: 1.5 * $default-spacer,
+  5: 3 * $default-spacer
+) !default;

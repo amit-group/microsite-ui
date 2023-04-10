@@ -1,0 +1,110 @@
+import { MicrositeCarouselConfig } from "@microsite/interfaces/carousel";
+import { MicrositeElement } from "@microsite/core/element";
+import angleLeft from "../../assets/images/angle_left.png";
+import angleRight from "../../assets/images/angle_right.png";
+
+export const MicrositeCarouselDefaultConfig: MicrositeCarouselConfig = {
+  delay: false,
+  tracking: {
+    label: "Playlist",
+    category: "Engagement",
+  },
+  options: {
+    loop: true,
+    margin: 15,
+    autoplay: false,
+    autoplayTimeout: 5000,
+    nav: true,
+    navText: [`<img src="${angleLeft}" alt="" />`, `<img src="${angleRight}" alt="" />`],
+    dots: false,
+    responsive: {
+      0: {
+        items: 2,
+      },
+      768: {
+        items: 3,
+      },
+      993: {
+        items: 3,
+      },
+    },
+  },
+};
+
+export class MicrositeCarousel extends MicrositeElement {
+  id: string;
+  name: string;
+  config: MicrositeCarouselConfig;
+  element: HTMLElement;
+  $carousel: any;
+
+  constructor(element, config: MicrositeCarouselConfig = {}) {
+    super();
+    this.element = element;
+    this.id = this.element.getAttribute("id") || this.generateID();
+    this.name = this.element.getAttribute('data-name') || "Unknown";
+    if (this.element.getAttribute("id") === null) {
+      this.element.id = this.id;
+    }
+    this.config = {
+      ...MicrositeCarouselDefaultConfig,
+      ...config,
+      options: { ...MicrositeCarouselDefaultConfig.options, ...(config.options ? config.options : {}) },
+    };    
+    this.init();
+  }
+
+  init(): void {
+    this.initCarousel();
+  }
+
+  initCarousel(): void {
+    const options = {
+      ...this.config.options,
+      onInitialized: this.onInitialized.bind(this),
+      onChanged: this.onChanged.bind(this),
+    };
+    this.$carousel = $(this.element).owlCarousel(options);
+  }
+
+  onInitialized(e) {
+    this.removeNavDisabledClass();
+    this.initEvents();
+  }
+
+  onChanged(e) {
+    this.removeNavDisabledClass();
+  }
+
+  removeNavDisabledClass() {
+    if (this.config.options.nav && $(this.element).find(".owl-nav.disabled").length > 0) {
+      $(this.element).find(".owl-nav").removeClass("disabled");
+    }
+  }
+
+  initEvents(): void {
+    const $items = $(this.element).find(".item");
+
+    $items.on('click', (e) => {
+      if(this.config.onClickItem){
+        this.config.onClickItem(e, e.currentTarget, this);
+      }
+      if(this.config.tracking) {
+        this.sendGA(`${this.dataName} ${e.currentTarget.getAttribute('data-name')} Item Clicked`);
+      }
+    });
+
+    if(this.config.options.nav && this.config.tracking) {
+      const $next = $(this.element).find(".owl-nav .owl-next");
+      const $prev = $(this.element).find(".owl-nav .owl-prev");
+      
+      $next.on('click', (e) => {
+        this.sendGA(`Left Arrow Clicked`);
+      });
+
+      $prev.on('click', (e) => {
+        this.sendGA(`Right Arrow Clicked`)
+      });
+    }
+  }
+}

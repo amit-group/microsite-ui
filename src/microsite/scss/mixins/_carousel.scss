@@ -1,0 +1,86 @@
+@use "../variables/carousel" as *;
+
+@mixin make-microsite-carousel() {
+  &.owl-carousel {
+    position: relative;
+
+    .owl-nav {
+      @include make-microsite-carousel-nav();
+    }
+  }
+}
+
+@mixin make-microsite-carousel-nav {
+  margin: 0;
+  padding: 0;
+
+  .owl-prev,
+  .owl-next {
+    position: absolute;
+    top: $carousel-nav-top;
+    padding: $carousel-nav-padding !important;
+
+    width: $carousel-nav-width;
+
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-name: pulseBtn;
+    animation-name: pulseBtn;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+
+  .owl-prev {
+    left: $carousel-prev-left;
+  }
+
+  .owl-next {
+    right: $carousel-next-right;
+  }
+}
+
+@mixin make-pulse-animation {
+  @-webkit-keyframes pulseBtn {
+    from {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+    }
+
+    50% {
+      -webkit-transform: scale3d(1.2, 1.2, 1.2);
+      transform: scale3d(1.2, 1.2, 1.2);
+    }
+
+    to {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+    }
+  }
+
+  @keyframes pulseBtn {
+    from {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+    }
+
+    50% {
+      -webkit-transform: scale3d(1.2, 1.2, 1.2);
+      transform: scale3d(1.2, 1.2, 1.2);
+    }
+
+    to {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+    }
+  }
+}

@@ -1,0 +1,11 @@
+@use '@core/scss/variables/global' as *;
+
+$carousel-prefix: "#{$prefix}-carousel" !default;
+
+$carousel-nav-top: 26% !default;
+$carousel-nav-padding: 1% !default;
+
+$carousel-prev-left: -9% !default;
+$carousel-next-right: -9% !default;
+
+$carousel-nav-width: 7% !default;
