@@ -1,0 +1,6 @@
+@use './mixins/modal' as *;
+@use './variables/modal' as *;
+
+.#{$modal-gallery-prefix} {
+  @include make-modal-gallery();
+}

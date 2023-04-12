@@ -1,0 +1,121 @@
+@use "../variables/modal" as *;
+@mixin make-modal-gallery {
+  .modal-body {
+    padding: 0;
+  }
+
+  .modal-content {
+    border: none;
+  }
+
+  .modal-dialog {
+    width: $modal-gallery-width;
+    max-width: $modal-gallery-width;
+  }
+
+  .close {
+    position: absolute;
+    top: $modal-gallery-close-top;
+    right: $modal-gallery-close-right;
+    width: $modal-gallery-close-width;
+    height: $modal-gallery-close-height;
+
+    background: none;
+    border: none;
+
+    padding: $modal-gallery-close-padding;
+
+    &:hover, &:focus, &:active {
+      outline: 0;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &-inner {
+    height: $modal-gallery-inner-height;
+    padding: $modal-gallery-inner-padding;
+
+    background-image: none;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center;
+  }
+
+  &-item {
+    &-inner {
+      display: flex;
+      flex-flow: row wrap;
+    }
+
+    &-left {
+      flex: 0 0 $modal-gallery-left-col-width;
+      max-width: $modal-gallery-left-col-width;
+      padding: $modal-gallery-left-col-padding;
+    }
+
+    &-right {
+      flex: 0 0 $modal-gallery-right-col-width;
+      max-width: $modal-gallery-right-col-width;
+      padding: $modal-gallery-right-col-padding;
+    }
+
+    &-title {
+      font-size: $modal-gallery-title-font-size;
+      line-height: $modal-gallery-title-line-height;
+      font-weight: $modal-gallery-title-font-weight;
+    }
+
+    &-description {
+      font-size: $modal-gallery-description-font-size;
+      line-height: $modal-gallery-description-line-height;
+      font-weight: $modal-gallery-description-font-weight;
+    }
+    
+  }
+
+  &-image {
+    &-main {
+      width: 100%;
+    }
+
+    &-list {
+      display: flex;
+      flex-flow: row wrap;
+      margin: 0 $modal-gallery-image-list-margin-x;
+
+      padding: $modal-gallery-image-list-padding;
+    }
+
+    &-col {
+      flex: 0 0 $modal-gallery-image-col-width;
+      max-width: $modal-gallery-image-col-width;
+      padding: $modal-gallery-image-col-padding;
+    }
+
+    &-thumb {
+      cursor: pointer;
+
+      width: 100%;
+    }
+  }
+
+  &-carousel.owl-carousel {
+    .owl-nav {
+      .owl-prev,
+      .owl-next {
+        top: 32%;
+      }
+      .owl-next {
+        right: -15%;
+      }
+
+      .owl-prev {
+        left: -15%;
+      }
+    }
+  }
+}

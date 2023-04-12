@@ -3,8 +3,7 @@ import { TrackingUtils } from "../utils/tracking";
 
 export abstract class MicrositeElement {
   abstract id: string;
-  abstract name: string;
-  abstract element: HTMLElement;
+  abstract element: any;
   abstract config: any;
 
   abstract init(): void;
@@ -28,6 +27,6 @@ export abstract class MicrositeElement {
   }
 
   generateID() {
-    return `${this.element.tagName.toLowerCase()}-${Math.random().toString(36).substr(2, 9)}`;
+    return `${this.constructor.name}-${Math.random().toString(36).substr(2, 9)}`;
   }
 }

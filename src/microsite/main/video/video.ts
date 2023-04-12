@@ -4,12 +4,11 @@ import {
   MicrositeVideoSoundOffControl,
   MicrositeVideoSoundOnControl,
   MicrositeVideoReplayControl,
-} from "./controls";
+} from "./video-controls";
 import { MicrositeElement } from "@microsite/core/element";
 
 export class MicrositeVideo extends MicrositeElement {
   id: string;
-  name: string;
   element: HTMLVideoElement;
   container: HTMLDivElement;
   config: MicrositeVideoConfig;
@@ -60,7 +59,6 @@ export class MicrositeVideo extends MicrositeElement {
     super();
     this.element = element;
     this.id = this.element.getAttribute("id") || this.generateID();
-    this.name = this.element.getAttribute('data-name') || "Unknown";
     if (this.element.getAttribute("id") === null) {
       this.element.id = this.id;
     }

@@ -33,7 +33,6 @@ export const MicrositeCarouselDefaultConfig: MicrositeCarouselConfig = {
 
 export class MicrositeCarousel extends MicrositeElement {
   id: string;
-  name: string;
   config: MicrositeCarouselConfig;
   element: HTMLElement;
   $carousel: any;
@@ -42,7 +41,6 @@ export class MicrositeCarousel extends MicrositeElement {
     super();
     this.element = element;
     this.id = this.element.getAttribute("id") || this.generateID();
-    this.name = this.element.getAttribute('data-name') || "Unknown";
     if (this.element.getAttribute("id") === null) {
       this.element.id = this.id;
     }
@@ -50,7 +48,7 @@ export class MicrositeCarousel extends MicrositeElement {
       ...MicrositeCarouselDefaultConfig,
       ...config,
       options: { ...MicrositeCarouselDefaultConfig.options, ...(config.options ? config.options : {}) },
-    };    
+    };
     this.init();
   }
 
@@ -60,9 +58,9 @@ export class MicrositeCarousel extends MicrositeElement {
 
   initCarousel(): void {
     const options = {
-      ...this.config.options,
       onInitialized: this.onInitialized.bind(this),
       onChanged: this.onChanged.bind(this),
+      ...this.config.options,
     };
     this.$carousel = $(this.element).owlCarousel(options);
   }
@@ -86,25 +84,35 @@ export class MicrositeCarousel extends MicrositeElement {
     const $items = $(this.element).find(".item");
 
     $items.on('click', (e) => {
-      if(this.config.onClickItem){
+      if(this.config.onClickItem) {
         this.config.onClickItem(e, e.currentTarget, this);
       }
-      if(this.config.tracking) {
-        this.sendGA(`${this.dataName} ${e.currentTarget.getAttribute('data-name')} Item Clicked`);
+
+      if(!this.element.classList.contains('am-gallery-modal-carousel')) {
+        this.sendGA(`${e.currentTarget.getAttribute('data-name')} Item Clicked`);
       }
     });
 
-    if(this.config.options.nav && this.config.tracking) {
+    if(this.config.options.nav) {
       const $next = $(this.element).find(".owl-nav .owl-next");
       const $prev = $(this.element).find(".owl-nav .owl-prev");
       
       $next.on('click', (e) => {
-        this.sendGA(`Left Arrow Clicked`);
+        this.sendGA(`Right Arrow Clicked`);
       });
 
       $prev.on('click', (e) => {
-        this.sendGA(`Right Arrow Clicked`)
+        this.sendGA(`Left Arrow Clicked`)
       });
     }
   }
+
+  getItemByIndex(index: number) {
+    return $(this.element).find('.owl-item')[index];
+  }
+
+  moveToIndex(index: number){
+    $(this.element).trigger('to.owl.carousel', index);
+  }
+
 }

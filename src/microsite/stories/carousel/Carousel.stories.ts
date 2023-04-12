@@ -1,4 +1,3 @@
-import "owl.carousel/dist/owl.carousel.min.js";
 import { MicrositeCarousel } from "@microsite/main/carousel";
 import { createCarousel } from "./Carousel";
 

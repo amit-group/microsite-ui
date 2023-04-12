@@ -1,7 +1,5 @@
-import { DefaultVideoProps, createVideo } from "../video/Video";
 import tvc1 from "../../assets/videos/tvc1.mp4";
 import tvc2 from "../../assets/videos/tvc2.mp4";
-import { createCarousel } from "../carousel/Carousel";
 
 export const createPlaylist = (args) => {
   const container = document.createElement('DIV') ;
