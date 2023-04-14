@@ -1,5 +1,6 @@
 import "owl.carousel/dist/owl.carousel.min.js";
 import 'bootstrap';
+import 'jquery/dist/jquery';
 import '../src/microsite/microsite.scss';
 
 export const parameters = {
