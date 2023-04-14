@@ -1,5 +1,5 @@
 import { MicrositeCarouselConfig } from "./carousel";
-import { MicrositeTrackingConfig } from "./general";
+import { MicrositeTrackingConfig } from "./tracking";
 import { MicrositeVideoConfig } from "./video";
 
 export interface MicrositePlaylistConfig {
@@ -7,13 +7,14 @@ export interface MicrositePlaylistConfig {
   carouselConfig?: MicrositeCarouselConfig;
   
   videoEl: HTMLVideoElement;
-  videoConfig: MicrositeVideoConfig;
+  videoConfig?: MicrositeVideoConfig;
 
   toggleEl?: HTMLElement | NodeListOf<HTMLElement>;
+  toggleConfig?: MicrositePlaylistToggleConfig;
 
-  tracking?: MicrositeTrackingConfig;
+  tracking?: Partial<MicrositeTrackingConfig>;
 }
 
 export interface MicrositePlaylistToggleConfig {
-  tracking?: MicrositeTrackingConfig;
+  tracking?: Partial<MicrositeTrackingConfig>;
 }

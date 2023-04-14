@@ -132,9 +132,9 @@ export class MicrositeVideo extends MicrositeElement {
     this.element.setAttribute("controls", "true");
 
     if(this.enableReplayControl && this.element.hasAttribute("data-ended")){
-      this.sendGA("Replay_Clicked");
+      this.sendGA(this.trackingConfig?.events?.videoReplay || "Replay Clicked");
     } else {
-      this.sendGA("Play_Clicked");
+      this.sendGA(this.trackingConfig?.events?.videoPlay || "Play Clicked");
     }
     this.element.removeAttribute("data-ended");
   }
@@ -148,7 +148,7 @@ export class MicrositeVideo extends MicrositeElement {
       this.element.removeAttribute("controls");
     }
 
-    this.sendGA("Pause_Clicked");
+    this.sendGA(this.trackingConfig?.events?.videoPause || "Pause Clicked");
   }
 
   onEnded() {
@@ -165,11 +165,11 @@ export class MicrositeVideo extends MicrositeElement {
       if (this.element.muted) {
         this.controls.soundOff.show();
         this.controls.soundOn.hide();
-        this.sendGA("SoundOff_Clicked");
+        this.sendGA(this.trackingConfig?.events?.videoSoundOff || "SoundOff Clicked");
       } else {
         this.controls.soundOff.hide();
         this.controls.soundOn.show();
-        this.sendGA("SoundOn_Clicked");
+        this.sendGA(this.trackingConfig?.events?.videoSoundOn || "SoundOn Clicked");
       }
     }
   }

@@ -83,36 +83,42 @@ export class MicrositeCarousel extends MicrositeElement {
   initEvents(): void {
     const $items = $(this.element).find(".item");
 
-    $items.on('click', (e) => {
-      if(this.config.onClickItem) {
+    $items.on("click", (e) => {
+      if (this.config.onClickItem) {
         this.config.onClickItem(e, e.currentTarget, this);
       }
 
-      if(!this.element.classList.contains('am-gallery-modal-carousel')) {
-        this.sendGA(`${e.currentTarget.getAttribute('data-name')} Item Clicked`);
+      if (!this.element.classList.contains("am-gallery-modal-carousel")) {
+        this.sendGA(
+          this.trackingConfig?.events?.carouselClickItem
+            ? {
+                ...this.trackingConfig?.events?.carouselClickItem,
+                action: this.trackingConfig?.events?.carouselClickItem.action.replace("{name}", e.currentTarget.getAttribute("data-name")),
+              }
+            : `${e.currentTarget.getAttribute("data-name")} Item Clicked`
+        );
       }
     });
 
-    if(this.config.options.nav) {
+    if (this.config.options.nav) {
       const $next = $(this.element).find(".owl-nav .owl-next");
       const $prev = $(this.element).find(".owl-nav .owl-prev");
-      
-      $next.on('click', (e) => {
-        this.sendGA(`Right Arrow Clicked`);
+
+      $next.on("click", (e) => {
+        this.sendGA(this.trackingConfig?.events?.carouselClickNext || `Right Arrow Clicked`);
       });
 
-      $prev.on('click', (e) => {
-        this.sendGA(`Left Arrow Clicked`)
+      $prev.on("click", (e) => {
+        this.sendGA(this.trackingConfig?.events?.carouselClickPrev || `Left Arrow Clicked`);
       });
     }
   }
 
   getItemByIndex(index: number) {
-    return $(this.element).find('.owl-item')[index];
+    return $(this.element).find(".owl-item")[index];
   }
 
-  moveToIndex(index: number){
-    $(this.element).trigger('to.owl.carousel', index);
+  moveToIndex(index: number) {
+    $(this.element).trigger("to.owl.carousel", index);
   }
-
 }

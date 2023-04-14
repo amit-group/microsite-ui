@@ -17,7 +17,15 @@ ModalGallery.play = ({ canvasElement, args }) => {
     data: ModalGalleryDataMockup,
     tracking: {
       label: 'Gallery',
-      category: 'Engagement'
+      category: 'Engagement',
+      // events: {
+      //   modalClickClose: {
+      //     action: "Button Close Clicked"
+      //   },
+      //   modalClickThumb: {
+      //     action: "Thumb {name} Clicked"
+      //   }
+      // }
     }
   })
 }

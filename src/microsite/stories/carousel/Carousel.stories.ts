@@ -16,7 +16,23 @@ Carousel.args = {
 Carousel.storyName = "Carousel";
 Carousel.play = ({ canvasElement, args }) => { 
   const carousel = canvasElement.querySelector(".am-carousel");
-  new MicrositeCarousel(carousel, args);
+  new MicrositeCarousel(carousel, {
+    tracking: {
+      category: "Engagement",
+      label: "Example Carousel",
+      events: {
+        carouselClickItem: {
+          action: "{name} _Click"
+        },
+        carouselClickNext: {
+          action: "_Next_Click"
+        },
+        carouselClickPrev: {
+          action: "_Prev_Click"
+        },
+      }
+    }
+  });
 };
 Carousel.parameters = {
   docs: {

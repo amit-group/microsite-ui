@@ -18,6 +18,17 @@ Video.play = ({ canvasElement, args }) => {
     tracking: {
       category: "Engagement",
       label: "Video Interaction",
+      events: {
+        videoSoundOn: {
+          category: "Engagement",
+          label: "General",
+        },
+        videoSoundOff: {
+          category: "Engagement",
+          label: "General",
+          target: ""  
+        }
+      }
     }
   });
 }

@@ -1,11 +1,11 @@
 import { MicrositeCarouselConfig } from "./carousel";
-import { MicrositeTrackingConfig } from "./general";
+import { MicrositeTrackingConfig } from "./tracking";
 
 export interface MicrositeModalGalleryConfig {
   data: MicrositeModalGalleryData[];
   carouselEl?: HTMLDivElement | string;
   carouselConfig?: MicrositeCarouselConfig;  
-  tracking?: MicrositeTrackingConfig
+  tracking?: Partial<MicrositeTrackingConfig>
 }
 
 export interface MicrositeModalGalleryData {

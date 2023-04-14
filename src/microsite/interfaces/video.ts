@@ -1,4 +1,4 @@
-import { MicrositeTrackingConfig } from "./general";
+import { MicrositeTrackingConfig } from "./tracking";
 
 export interface MicrositeVideoConfig {
   customControl?: boolean | {
@@ -7,7 +7,7 @@ export interface MicrositeVideoConfig {
     soundOn?:  boolean | { image: any },
     replay?:  boolean | { image: any }
   },
-  tracking?: MicrositeTrackingConfig,
+  tracking?: Partial<MicrositeTrackingConfig>,
 }
 
 export interface MicrositeVideoControlConfig {

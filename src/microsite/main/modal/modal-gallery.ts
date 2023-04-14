@@ -125,7 +125,7 @@ export class MicrositeModalGallery extends MicrositeElement {
       e.preventDefault();
       e.stopPropagation();
       ($(this.modalEl) as any).modal('hide');
-      this.sendGA("Popup Close Clicked");
+      this.sendGA(this.trackingConfig?.events?.modalClickClose || "Popup Close Clicked");
     });
 
     const thumbs = $(this.modalEl).find(".am-gallery-modal-image-thumb");
@@ -138,7 +138,10 @@ export class MicrositeModalGallery extends MicrositeElement {
       $(thumbs).removeClass("active");
       $(thumb).addClass("active");
 
-      this.sendGA(`Image ${name} Clicked`);
+      this.sendGA(this.trackingConfig?.events?.modalClickThumb ? {
+        ...this.trackingConfig?.events?.modalClickThumb,
+        action: this.trackingConfig?.events?.modalClickThumb.action.replace("{name}", name)
+      } : `Image ${name} Clicked`);
     });
   }
 

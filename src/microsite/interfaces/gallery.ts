@@ -1,5 +1,5 @@
 import { MicrositeCarouselConfig } from "./carousel";
-import { MicrositeTrackingConfig } from "./general";
+import { MicrositeTrackingConfig } from "./tracking";
 import { MicrositeModalGalleryConfig } from "./modal";
 
 export interface MicrositeGalleryConfig {
@@ -9,5 +9,5 @@ export interface MicrositeGalleryConfig {
   modalConfig: MicrositeModalGalleryConfig;
   toggleEl?: HTMLElement | NodeListOf<HTMLElement> | string;
   toggleConfig?: any;
-  tracking?: MicrositeTrackingConfig
+  tracking?: Partial<MicrositeTrackingConfig>
 }

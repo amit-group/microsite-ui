@@ -87,12 +87,15 @@ PlaylistWithoutCarousel.play = ({ canvasElement, args }) => {
   const toggles = canvasElement.querySelectorAll('.am-playlist-toggle');
   new MicrositePlaylist({
     videoEl: video,
-    videoConfig: {
-      tracking: {
-        label: "Playlist",
-        category: "Engagement"
+    toggleEl: toggles,
+    tracking: {
+      label: "Playlist",
+      category: "Engagement",
+      events: {
+        toggleClick: {
+          action: "Playlist Toggle {name} Clicked"
+        }
       }
-    },
-    toggleEl: toggles
+    }
   })
 }
