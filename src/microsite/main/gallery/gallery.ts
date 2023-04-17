@@ -30,7 +30,7 @@ export class MicrositeGallery extends MicrositeElement {
       ...{
         tracking: {
           ...(config.tracking || {}),
-          ...(config.carouselConfig.tracking || {}),
+          ...(config.carouselConfig?.tracking || {}),
         },
       },
       onClickItem: this.onClickToggle.bind(this),
@@ -40,7 +40,7 @@ export class MicrositeGallery extends MicrositeElement {
       ...{
         tracking: {
           ...(config.tracking || {}),
-          ...(config.modalConfig.tracking || {}),
+          ...(config.modalConfig?.tracking || {}),
         },
       },
       
@@ -50,7 +50,7 @@ export class MicrositeGallery extends MicrositeElement {
       ...{
         tracking: {
           ...(config.tracking || {}),
-          ...(config.toggleConfig.tracking || {}),
+          ...(config.toggleConfig?.tracking || {}),
         },
       },
       ...{ onClick: this.onClickToggle.bind(this) },

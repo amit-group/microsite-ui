@@ -7,19 +7,17 @@ module.exports = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/preset-scss",
-    "@storybook/addon-docs"
+    "@storybook/addon-docs",
   ],
   framework: "@storybook/html",
   core: {
     builder: "@storybook/builder-webpack5",
   },
-  // staticDirs: [
-  //   "../src/assets"
-  // ],
+  staticDirs: [{ from: "../src/microsite/minigame", to: "/minigame" }],
   webpackFinal: async (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      ...require("../paths")
+      ...require("../paths"),
     };
     config.plugins = [
       ...config.plugins,
@@ -27,8 +25,8 @@ module.exports = {
         $: "jquery",
         jQuery: "jquery",
         "window.jQuery": "jquery",
-      })
+      }),
     ];
     return config;
-  }
+  },
 };

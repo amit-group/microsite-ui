@@ -9,6 +9,19 @@ export class MicrositeToggle extends MicrositeElement {
   constructor(element: HTMLElement | NodeListOf<HTMLElement> | string, config) {
     super();
     this.element = typeof element === "string" ? document.querySelectorAll(element) : element;
+    if (this.element && NodeList.prototype.isPrototypeOf(this.element)) {
+      (this.element as NodeListOf<HTMLElement>).forEach((el) => {
+        if (!el.id) {
+          el.id = this.generateID();
+        }
+      });
+    } else {
+      if ((this.element as HTMLElement).id) {
+        this.id = (this.element as HTMLElement).id;
+      } else {
+        (this.element as HTMLElement).id = this.id = this.generateID();
+      }
+    }
     this.config = config;
 
     this.init();

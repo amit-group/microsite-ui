@@ -1,0 +1,88 @@
+@mixin make_body_popup {
+  body.popup::before {
+    opacity: 1;
+    visibility: visible;
+  }
+  body.popup #popup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    opacity: 1;
+    visibility: visible;
+    z-index: 999;
+  }
+  body:not(.popup) #popup .animate__animated {
+    animation: none !important;
+    -webkit-animation: none !important;
+  }
+}
+
+@mixin make_minigame_popup {
+  #popup {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    max-height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    text-align: center;
+    visibility: hidden;
+    opacity: 0;
+  }
+  #popup .animate__animated {
+  }
+  #popup .popup-close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    transform: translate(50%, -50%);
+    z-index: 9999;
+    text-align: right;
+
+    border-radius: 50%;
+    img {
+      max-width: 10vh;
+    }
+  }
+  #popup .popup-item > div > img {
+    width: 100%;
+  }
+  #popup .popup-item:not(.show) {
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    /* display:  none !important; */
+  }
+  #popup .popup-game__container {
+    position: relative;
+    background: #b8479d;
+    border: 8px solid #b8479d;
+    box-shadow: 0 0 16px #efde9e;
+  }
+
+  #popup .popup-game__wrapper {
+    height: 85vh;
+    width: calc(85vh * (2 / 3));
+    position: relative;
+    z-index: 999;
+  }
+  #popup .popup-game__container iframe {
+    height: 100%;
+    width: 100%;
+    border: none;
+  }
+  @media screen and (max-width: 575px) {
+    #popup .popup-close {
+      img {
+        width: 40px;
+      }
+    }
+  }
+}

@@ -18,6 +18,8 @@ export interface MicrositeTrackingEvents {
   modalClickThumb: MicrositeTrackingData;
 
   playlistClickToggle: MicrositeTrackingData;
+
+  minigameClickClose: MicrositeTrackingData;
 }
 export interface MicrositeTrackingConfig {
   label: string;

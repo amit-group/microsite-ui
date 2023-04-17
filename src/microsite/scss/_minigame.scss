@@ -1,0 +1,7 @@
+@use "./mixins/minigame" as *;
+
+@include make_body_popup;
+@include make_minigame_popup;
+
+
+
