@@ -14,7 +14,7 @@ const devServer = require("./devServer");
 // @Entry Point Setup
 // ------------------
 const entry = {
-  'microsite': path.join(manifest.paths.input, "microsite", manifest.entries['microsite']),
+  'microsite': path.join(manifest.paths.input, manifest.entries['microsite']),
   // vendor: manifest.entries.vendor
 };
 

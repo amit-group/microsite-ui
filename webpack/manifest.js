@@ -23,7 +23,7 @@ const dir = src => path.join(__dirname, src);
 // @App Paths
 // --------------
 const paths = {
-    input: dir('../src'),
+    input: dir('../'),
     output: dir('../dist')
 };
 

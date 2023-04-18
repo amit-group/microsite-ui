@@ -3,10 +3,6 @@
     "checkJs": false,
     "resolveJsonModule": true,
     "baseUrl": "./",
-    "paths": {
-      "@core/*": ["src/core/*"],
-      "@microsite/*": ["src/microsite/*"],
-    }
   },
   "exclude": [
     "dist",

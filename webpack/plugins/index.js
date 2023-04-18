@@ -5,6 +5,6 @@ plugins.push(
     require('./cleanWebpackPlugin'),
     require('./miniCssExtractPlugin'),
     // ...(require('./htmlPlugin')),
-    require('jquery')
+    // require('jquery')
 );
 module.exports = plugins;

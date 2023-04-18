@@ -4,12 +4,9 @@
 module.exports = {
     test: /\.(png|svg|jpg|jpeg|gif|ico)$/,
     use: [{
-        loader: 'file-loader',
+        loader: 'url-loader',
         options: {
-            name: '[path][name].[ext]',
-            limit: '8000',
-            outputPath: 'images/',
-            publicPath: 'images/',
+            limit: 8192,
             esModule: false
         }
     }]
