@@ -75,7 +75,7 @@ export class MicrositeVideo extends MicrositeElement {
 
   constructor(element, config: MicrositeVideoConfig) {
     super();
-    this.element = element;
+    this.element = typeof element === 'string' ? document.querySelector(element) : element;
     this.id = this.element.getAttribute("id") || this.generateID();
     if (this.element.getAttribute("id") === null) {
       this.element.id = this.id;
