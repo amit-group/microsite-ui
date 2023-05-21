@@ -45,7 +45,15 @@ export class MicrositeToggle extends MicrositeElement {
         this.config.onClick(e, this);
       }
 
-      this.sendGA(this.trackingConfig?.events?.toggleClick || "Clicked");
+      const target = e.target;
+
+      this.sendGA({
+        action: "Clicked",
+        target: target.getAttribute('data-name'),
+        category: this.trackingConfig?.category || "Engagement",
+        label: this.trackingConfig?.label || "General",
+        ...(this.trackingConfig?.events?.toggleClick ?? {})
+      });
     });
   }
 }
