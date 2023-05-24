@@ -93,16 +93,16 @@ export class MicrositeModalGallery extends MicrositeElement {
                         .join("\n")
                     : `
                 <div class="am-gallery-modal-image-col">
-                  <img src="/images/${data.id}/1.png" data-index="1" class="am-gallery-modal-image-thumb active" data-name="1" alt="Gallery ${data.id} - 1" />
+                  <img src="./images/${data.id}/1.png" data-index="1" class="am-gallery-modal-image-thumb active" data-name="1" alt="Gallery ${data.id} - 1" />
                 </div>
                 <div class="am-gallery-modal-image-col">
                   <img src="./images/${data.id}/2.png" data-index="2" class="am-gallery-modal-image-thumb" data-name="2" alt="Gallery ${data.id} - 2" />
                 </div>
                 <div class="am-gallery-modal-image-col">
-                  <img src="/images/${data.id}/3.png" data-index="3" class="am-gallery-modal-image-thumb" data-name="3" alt="Gallery ${data.id} - 3" />
+                  <img src="./images/${data.id}/3.png" data-index="3" class="am-gallery-modal-image-thumb" data-name="3" alt="Gallery ${data.id} - 3" />
                 </div>
                 <div class="am-gallery-modal-image-col">
-                  <img src="/images/${data.id}/4.png" data-index="4" class="am-gallery-modal-image-thumb" data-name="4" alt="Gallery ${data.id} - 4" />
+                  <img src="./images/${data.id}/4.png" data-index="4" class="am-gallery-modal-image-thumb" data-name="4" alt="Gallery ${data.id} - 4" />
                 </div>
                 `
                 }             
