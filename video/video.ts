@@ -75,7 +75,7 @@ export class MicrositeVideo extends MicrositeElement {
 
   constructor(element, config: MicrositeVideoConfig) {
     super();
-    this.element = typeof element === 'string' ? document.querySelector(element) : element;
+    this.element = typeof element === "string" ? document.querySelector(element) : element;
     this.id = this.element.getAttribute("id") || this.generateID();
     if (this.element.getAttribute("id") === null) {
       this.element.id = this.id;
@@ -115,10 +115,46 @@ export class MicrositeVideo extends MicrositeElement {
     if (this.enableCustomControl) {
       this.element.removeAttribute("controls");
       this.controls = {
-        play: this.enablePlayControl ? new MicrositeVideoPlayControl(this, { type: "play" }) : null,
-        soundOff: this.enableSoundOffControl ? new MicrositeVideoSoundOffControl(this, { type: "sound-off" }) : null,
-        soundOn: this.enableSoundOnControl ? new MicrositeVideoSoundOnControl(this, { type: "sound-on" }) : null,
-        replay: this.enableReplayControl ? new MicrositeVideoReplayControl(this, { type: "replay" }) : null,
+        play: this.enablePlayControl
+          ? new MicrositeVideoPlayControl(this, {
+              type: "play",
+              ...(typeof this.config.customControl == "object"
+                ? typeof this.config.customControl.play === "object"
+                  ? this.config.customControl.play
+                  : {}
+                : {}),
+            })
+          : null,
+        soundOff: this.enableSoundOffControl
+          ? new MicrositeVideoSoundOffControl(this, {
+              type: "sound-off",
+              ...(typeof this.config.customControl == "object"
+                ? typeof this.config.customControl.soundOff === "object"
+                  ? this.config.customControl.soundOff
+                  : {}
+                : {}),
+            })
+          : null,
+        soundOn: this.enableSoundOnControl
+          ? new MicrositeVideoSoundOnControl(this, {
+              type: "sound-on",
+              ...(typeof this.config.customControl == "object"
+                ? typeof this.config.customControl.soundOn === "object"
+                  ? this.config.customControl.soundOn
+                  : {}
+                : {}),
+            })
+          : null,
+        replay: this.enableReplayControl
+          ? new MicrositeVideoReplayControl(this, {
+              type: "replay",
+              ...(typeof this.config.customControl == "object"
+                ? typeof this.config.customControl.replay === "object"
+                  ? this.config.customControl.replay
+                  : {}
+                : {}),
+            })
+          : null,
       };
     }
   }
