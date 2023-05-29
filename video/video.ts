@@ -194,7 +194,7 @@ export class MicrositeVideo extends MicrositeElement {
   }
 
   onPause() {
-    if (this.enablePlayControl) {
+    if (this.enablePlayControl && !this.element.ended) {
       this.controls.play.show();
     }
 

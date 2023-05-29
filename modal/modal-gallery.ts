@@ -149,9 +149,10 @@ export class MicrositeModalGallery extends MicrositeElement {
       const thumb = e.currentTarget as HTMLImageElement;
       const name = $(thumb).data("name");
       const mainImg = thumb.parentElement.parentElement.parentElement.querySelector(".am-gallery-modal-image-main img");
+      const thumbContainer = thumb.parentElement.parentElement;
 
       $(mainImg).attr("src", thumb.src);
-      $(thumbs).removeClass("active");
+      $($(thumbContainer).find('.am-gallery-modal-image-thumb')).removeClass("active");
       $(thumb).addClass("active");
 
       this.sendGA(
