@@ -210,7 +210,9 @@ export class MicrositeVideo extends MicrositeElement {
       this.element.removeAttribute("controls");
     }
 
-    this.sendGA(this.trackingConfig?.events?.videoPause || "Pause Clicked");
+    if(!this.element.ended) {
+      this.sendGA(this.trackingConfig?.events?.videoPause || "Pause Clicked");
+    }
   }
 
   onEnded() {
