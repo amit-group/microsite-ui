@@ -87,8 +87,8 @@ export class MicrositeVideo extends MicrositeElement {
 
   init() {
     this.initControls();
-    this.initEvents();
     this.initAttributes();
+    this.initEvents();
   }
 
   play() {
@@ -257,7 +257,7 @@ export class MicrositeVideo extends MicrositeElement {
 
   onTimeUpdate(e) {
     e.stopPropagation();
-    const videoDuration = e.target.videoDuration;
+    const videoDuration = e.target.duration;
     const videoWatchedTime = e.target.currentTime * 100;
     if (Math.floor(videoWatchedTime / videoDuration) >= 25 && this.element.getAttribute("data-25") == "false") {
       this.element.setAttribute("data-25", "true");

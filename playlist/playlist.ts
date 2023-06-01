@@ -49,10 +49,12 @@ export class MicrositePlaylist extends MicrositeElement {
         onClickItem: this.onClickToggle.bind(this),
       },
       ...{
-        tracking: {
-          ...(config.tracking || {}),
-          ...(config.carouselConfig?.tracking || {}),
-        },
+        tracking: config.tracking
+          ? {
+              ...(config.tracking || {}),
+              ...(config.carouselConfig?.tracking || {}),
+            }
+          : undefined,
       },
     };
 

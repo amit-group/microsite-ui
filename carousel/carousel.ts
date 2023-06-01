@@ -98,7 +98,6 @@ export class MicrositeCarousel extends MicrositeElement {
       if (this.config.onClickItem) {
         this.config.onClickItem(e, e.currentTarget, this);
       }
-
       if (!this.element.classList.contains("am-gallery-modal-carousel")) {
         this.sendGA(
           this.trackingConfig?.events?.carouselClickItem
