@@ -9,6 +9,10 @@ export interface MicrositeTrackingEvents {
   videoPause: MicrositeTrackingData;
   videoSoundOff: MicrositeTrackingData;
   videoSoundOn: MicrositeTrackingData;
+  video25Percent: MicrositeTrackingData;
+  video50Percent: MicrositeTrackingData;
+  video75Percent: MicrositeTrackingData;
+  video100Percent: MicrositeTrackingData;
 
   carouselClickNext: MicrositeTrackingData;
   carouselClickPrev: MicrositeTrackingData;

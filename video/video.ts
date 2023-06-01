@@ -88,6 +88,7 @@ export class MicrositeVideo extends MicrositeElement {
   init() {
     this.initControls();
     this.initEvents();
+    this.initAttributes();
   }
 
   play() {
@@ -109,6 +110,13 @@ export class MicrositeVideo extends MicrositeElement {
 
   soundOff() {
     this.element.muted = true;
+  }
+
+  initAttributes() {
+    this.element.setAttribute("data-25", "false");
+    this.element.setAttribute("data-50", "false");
+    this.element.setAttribute("data-75", "false");
+    this.element.setAttribute("data-100", "false");
   }
 
   initControls() {
@@ -247,7 +255,42 @@ export class MicrositeVideo extends MicrositeElement {
     this.play();
   }
 
-  onTimeUpdate() {}
+  onTimeUpdate(e) {
+    e.stopPropagation();
+    const videoDuration = e.target.videoDuration;
+    const videoWatchedTime = e.target.currentTime * 100;
+    if (Math.floor(videoWatchedTime / videoDuration) >= 25 && this.element.getAttribute("data-25") == "false") {
+      this.element.setAttribute("data-25", "true");
+      this.sendGA(this.trackingConfig?.events?.video25Percent || "Played 25%");
+    }
+    if (Math.floor(videoWatchedTime / videoDuration) >= 50 && this.element.getAttribute("data-50") == "false") {
+      this.element.setAttribute("data-50", "true");
+      this.sendGA(this.trackingConfig?.events?.video50Percent || "Played 50%");
+    }
+    if (Math.floor(videoWatchedTime / videoDuration) >= 75 && this.element.getAttribute("data-75") == "false") {
+      this.element.setAttribute("data-75", "true");
+      this.sendGA(this.trackingConfig?.events?.video75Percent || "Played 75%");
+    }
+    if (Math.floor(videoWatchedTime / videoDuration) >= 100 && this.element.getAttribute("data-100") == "false") {
+      this.element.setAttribute("data-100", "true");
+      this.sendGA(this.trackingConfig?.events?.video100Percent || "Played 100%");
+    }
+  }
+
+  getVideoCompletion(element: HTMLVideoElement) {
+    return [25, 50, 75, 100].map((percent) => {
+      return {
+        percent: percent,
+        status: element.getAttribute(`data-${percent}`) ?? "false",
+      };
+    });
+  }
+
+  setVideoCompletion(element: HTMLVideoElement | HTMLDivElement, array) {
+    array.forEach((completion) => {
+      element.setAttribute(`data-${completion.percent}`, completion.status);
+    });
+  }
 }
 
 export default window.MicrositeVideo = MicrositeVideo;
