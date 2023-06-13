@@ -6,6 +6,7 @@ import { MicrositeTrackingConfig } from "../tracking";
 
 export interface MicrositeModalGalleryConfig {
   data: MicrositeModalGalleryData[];
+  hasMiniThumbnail?: boolean;
   carouselEl?: HTMLDivElement | string;
   carouselConfig?: MicrositeCarouselConfig;
   tracking?: Partial<MicrositeTrackingConfig>;
@@ -93,16 +94,16 @@ export class MicrositeModalGallery extends MicrositeElement {
                         .join("\n")
                     : `
                 <div class="am-gallery-modal-image-col">
-                  <img src="./images/${data.id}/1.png" data-index="1" class="am-gallery-modal-image-thumb active" data-name="1" alt="Gallery ${data.id} - 1" />
+                  <img src="./images/${data.id}/1${this.config.hasMiniThumbnail ? '-mini': ''}.png" data-src="./images/${data.id}/1.png" data-index="1" onerror="this.style.display = 'none'" class="am-gallery-modal-image-thumb active" data-name="1" alt="Gallery ${data.id} - 1" />
                 </div>
                 <div class="am-gallery-modal-image-col">
-                  <img src="./images/${data.id}/2.png" data-index="2" class="am-gallery-modal-image-thumb" data-name="2" alt="Gallery ${data.id} - 2" />
+                  <img src="./images/${data.id}/2${this.config.hasMiniThumbnail ? '-mini': ''}.png" data-src="./images/${data.id}/2.png" data-index="2" onerror="this.style.display = 'none'" class="am-gallery-modal-image-thumb" data-name="2" alt="Gallery ${data.id} - 2" />
                 </div>
                 <div class="am-gallery-modal-image-col">
-                  <img src="./images/${data.id}/3.png" data-index="3" class="am-gallery-modal-image-thumb" data-name="3" alt="Gallery ${data.id} - 3" />
+                  <img src="./images/${data.id}/3${this.config.hasMiniThumbnail ? '-mini': ''}.png" data-src="./images/${data.id}/3.png" data-index="3" onerror="this.style.display = 'none'" class="am-gallery-modal-image-thumb" data-name="3" alt="Gallery ${data.id} - 3" />
                 </div>
                 <div class="am-gallery-modal-image-col">
-                  <img src="./images/${data.id}/4.png" data-index="4" class="am-gallery-modal-image-thumb" data-name="4" alt="Gallery ${data.id} - 4" />
+                  <img src="./images/${data.id}/4${this.config.hasMiniThumbnail ? '-mini': ''}.png" data-src="./images/${data.id}/4.png" data-index="4" onerror="this.style.display = 'none'" class="am-gallery-modal-image-thumb" data-name="4" alt="Gallery ${data.id} - 4" />
                 </div>
                 `
                 }             
@@ -151,7 +152,7 @@ export class MicrositeModalGallery extends MicrositeElement {
       const mainImg = thumb.parentElement.parentElement.parentElement.querySelector(".am-gallery-modal-image-main img");
       const thumbContainer = thumb.parentElement.parentElement;
 
-      $(mainImg).attr("src", thumb.src);
+      $(mainImg).attr("src", thumb.getAttribute('data-src') ?? thumb.src);
       $($(thumbContainer).find('.am-gallery-modal-image-thumb')).removeClass("active");
       $(thumb).addClass("active");
 
