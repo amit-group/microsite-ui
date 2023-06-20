@@ -28,14 +28,16 @@ export abstract class MicrositeElement {
         const target = this.element.getAttribute('data-name');
         const category = this.trackingConfig?.category || "Engagement";
         const label = this.trackingConfig?.label || "General";
-        TrackingUtils.SendGA(`${target} ${action}`.trim(), label, category);
+        const eventName = this.trackingConfig?.eventName || "select_content";
+        TrackingUtils.SendGA(`${target} ${action}`.trim(), label, category, eventName);
       } else {
         const data = actionOrData;
         const action = data.action ?? "Clicked";
         const target = data.target ?? this.element?.getAttribute('data-name') ?? "";
         const category = data.category ?? (this.trackingConfig?.category || "Engagement");
         const label = data.label ?? (this.trackingConfig?.label || "General");
-        TrackingUtils.SendGA(`${target} ${action}`.trim(), label, category);
+        const eventName = data.eventName ?? "select_content";
+        TrackingUtils.SendGA(`${target} ${action}`.trim(), label, category, eventName);
       }
       
     }

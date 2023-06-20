@@ -28,6 +28,7 @@ export interface MicrositeTrackingEvents {
 export interface MicrositeTrackingConfig {
   label: string;
   category: string;
+  eventName?: string;
   events?: Partial<MicrositeTrackingEvents>;
 }
 
@@ -36,21 +37,31 @@ export interface MicrositeTrackingData {
   target?: string;
   label?: string;
   category?: string;
+  eventName?: string;
 }
 
 declare function gtag(event: string, eventName: string, eventData: object): void;
 
 export class TrackingUtils {
-  static SendGA(action: string, label: string, category: string) {
+  static SendGA(action: string, label: string, category: string, eventName: string = "select_content") {
     try {
-      gtag("event", action, {
-        event_category: category,
-        event_label: label,
-      });
+      if (process.env.UNIVERSAL_ANALYTICS && process.env.UNIVERSAL_ANALYTICS === "true") {
+        gtag("event", action, {
+          event_category: category,
+          event_label: label,
+        });
+        console.log("Universal Analytics: ", action, { category: category, label: label });
+      }
+
+      if (process.env.GOOGLE_ANALYTICS_4 && process.env.GOOGLE_ANALYTICS_4 === "true") {
+        gtag("event", eventName, {
+          content_type: `${category}__${label}__${action}`,
+        });
+        console.log("Google Analytics 4: ", `select_content. `, `Content Type: ${category}__${label}__${action}`);
+      }
     } catch (e) {
       console.error(e);
     }
-    console.log(action, { category: category, label: label });
   }
 }
 
