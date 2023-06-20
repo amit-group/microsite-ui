@@ -1,6 +1,6 @@
 {
   "name": "@amitgroup/microsite",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "AMIT UI - Microsite",
   "main": "index.js",
   "scripts": {
